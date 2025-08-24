@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منطقة بني الزحيف التاريخية - المحويت، اليمن</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* شاشة الافتتاح */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('444.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: splash-zoom 4s ease-in-out forwards;
+        }
+
+        .splash-content {
+            text-align: center;
+            color: white;
+            animation: splash-text 3s ease-in-out forwards;
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .splash-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffd700, #ff6b35, #4facfe, #43e97b);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-move 2s ease-in-out infinite;
+        }
+
+        .splash-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .splash-welcome {
+            font-size: 1.2rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .loading-dot {
+            width: 12px;
+            height: 12px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: loading-bounce 1.4s ease-in-out infinite both;
+        }
+
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes splash-zoom {
+            0% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            70% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8) rotateY(90deg);
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes splash-text {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            30% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            70% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes loading-bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* إخفاء المحتوى الرئيسي في البداية */
+        .main-content {
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 4s forwards;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .splash-title {
+                font-size: 2rem;
+            }
+            .splash-subtitle {
+                font-size: 1.2rem;
+            }
+            .splash-welcome {
+                font-size: 1rem;
+                padding: 1rem 2rem;
+            }
+        }
+
+        .gradient-bg-1 { 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('90.jpg');
+            background-size: 200% 100%;
+            background-position: 0% 50%;
+            animation: panorama 20s ease-in-out infinite alternate;
+        }
+        .gradient-bg-2 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('11.jpg');
+            background-size: 150% 100%;
+            background-position: 0% 50%;
+            animation: panorama-slow 25s ease-in-out infinite alternate;
+        }
+        .gradient-bg-3 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('66.jpg');
+            background-size: 180% 100%;
+            background-position: 0% 50%;
+            animation: panorama-reverse 30s ease-in-out infinite alternate-reverse;
+        }
+        .gradient-bg-4 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('6677.jpg');
+            background-size: 160% 100%;
+            background-position: 0% 50%;
+            animation: panorama-fast 18s ease-in-out infinite alternate;
+        }
+        .gradient-bg-5 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('667788.jpg');
+            background-size: 170% 100%;
+            background-position: 0% 50%;
+            animation: panorama-diagonal 22s ease-in-out infinite alternate;
+        }
+        .gradient-bg-6 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('00.jpeg');
+            background-size: 190% 100%;
+            background-position: 0% 50%;
+            animation: panorama-zoom 28s ease-in-out infinite alternate;
+        }
+        .gradient-bg-7 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('1717.jpeg');
+            background-size: 140% 100%;
+            background-position: 0% 50%;
+            animation: panorama-wave 24s ease-in-out infinite alternate;
+        }
+        .gradient-bg-8 { 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('5566.jpg');
+            background-size: 165% 100%;
+            background-position: 0% 50%;
+            animation: panorama-smooth 26s ease-in-out infinite alternate;
+        }
+        .gradient-bg-footer { 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        @keyframes panorama {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes panorama-slow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes panorama-reverse {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes panorama-fast {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes panorama-diagonal {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes panorama-zoom {
+            0% { 
+                background-position: 0% 50%; 
+                background-size: 190% 100%;
+            }
+            50% { 
+                background-position: 50% 50%; 
+                background-size: 220% 120%;
+            }
+            100% { 
+                background-position: 100% 50%; 
+                background-size: 190% 100%;
+            }
+        }
+
+        @keyframes panorama-wave {
+            0% { background-position: 0% 30%; }
+            25% { background-position: 100% 70%; }
+            50% { background-position: 0% 70%; }
+            75% { background-position: 100% 30%; }
+            100% { background-position: 0% 30%; }
+        }
+
+        @keyframes panorama-smooth {
+            0% { background-position: 0% 50%; }
+            33% { background-position: 50% 30%; }
+            66% { background-position: 100% 70%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .moving-title {
+            background: linear-gradient(45deg, #ffd700, #ff6b35, #4facfe, #43e97b);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-move 3s ease-in-out infinite;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #ffd700;
+            animation: gradient-move 3s ease-in-out infinite, typing 4s steps(40) infinite;
+        }
+
+        @keyframes gradient-move {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes typing {
+            0%, 90%, 100% { width: 100%; }
+            45% { width: 0; }
+        }
+
+        .floating-text {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .gradient-bg-1 {
+                background-size: 300% 100%;
+                animation: panorama-mobile 15s ease-in-out infinite alternate;
+            }
+            .gradient-bg-2 {
+                background-size: 250% 100%;
+                animation: panorama-mobile-slow 20s ease-in-out infinite alternate;
+            }
+            .gradient-bg-3 {
+                background-size: 280% 100%;
+                animation: panorama-mobile-reverse 25s ease-in-out infinite alternate-reverse;
+            }
+            .gradient-bg-4 {
+                background-size: 260% 100%;
+                animation: panorama-mobile-fast 12s ease-in-out infinite alternate;
+            }
+            .gradient-bg-5 {
+                background-size: 270% 100%;
+                animation: panorama-mobile-diagonal 18s ease-in-out infinite alternate;
+            }
+            .gradient-bg-6 {
+                background-size: 290% 100%;
+                animation: panorama-mobile-zoom 22s ease-in-out infinite alternate;
+            }
+            .gradient-bg-7 {
+                background-size: 240% 100%;
+                animation: panorama-mobile-wave 16s ease-in-out infinite alternate;
+            }
+            .gradient-bg-8 {
+                background-size: 265% 100%;
+                animation: panorama-mobile-smooth 20s ease-in-out infinite alternate;
+            }
+        }
+
+        @keyframes panorama-mobile {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes panorama-mobile-slow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes panorama-mobile-reverse {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes panorama-mobile-fast {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes panorama-mobile-diagonal {
+            0% { background-position: 0% 30%; }
+            50% { background-position: 100% 70%; }
+            100% { background-position: 0% 30%; }
+        }
+
+        @keyframes panorama-mobile-zoom {
+            0% { 
+                background-position: 0% 50%; 
+                background-size: 290% 100%;
+            }
+            50% { 
+                background-position: 50% 50%; 
+                background-size: 320% 110%;
+            }
+            100% { 
+                background-position: 100% 50%; 
+                background-size: 290% 100%;
+            }
+        }
+
+        @keyframes panorama-mobile-wave {
+            0% { background-position: 0% 40%; }
+            25% { background-position: 100% 60%; }
+            50% { background-position: 0% 60%; }
+            75% { background-position: 100% 40%; }
+            100% { background-position: 0% 40%; }
+        }
+
+        @keyframes panorama-mobile-smooth {
+            0% { background-position: 0% 50%; }
+            33% { background-position: 50% 40%; }
+            66% { background-position: 100% 60%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-title {
+            background: linear-gradient(45deg, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-text {
+            background: linear-gradient(120deg, #ffd700 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        
+        /* الإطارات الفاصلة المتحركة */
+        .section-divider {
+            height: 8px;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .divider-1 {
+            background: linear-gradient(90deg, #22c55e, #16a34a, #15803d, #166534, #14532d);
+            background-size: 400% 100%;
+            animation: flow-right 8s linear infinite;
+        }
+
+        .divider-2 {
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8, #1e40af, #1e3a8a, #1e3a8a);
+            background-size: 400% 100%;
+            animation: flow-left 10s linear infinite;
+        }
+
+        .divider-3 {
+            background: linear-gradient(90deg, #f59e0b, #d97706, #b45309, #92400e, #78350f);
+            background-size: 400% 100%;
+            animation: flow-right 12s linear infinite;
+        }
+
+        .divider-4 {
+            background: linear-gradient(90deg, #8b5cf6, #7c3aed, #6d28d9, #5b21b6, #4c1d95);
+            background-size: 400% 100%;
+            animation: flow-left 9s linear infinite;
+        }
+
+        .divider-5 {
+            background: linear-gradient(90deg, #06b6d4, #0891b2, #0e7490, #155e75, #164e63);
+            background-size: 400% 100%;
+            animation: flow-right 11s linear infinite;
+        }
+
+        .divider-6 {
+            background: linear-gradient(90deg, #ef4444, #dc2626, #b91c1c, #991b1b, #7f1d1d);
+            background-size: 400% 100%;
+            animation: flow-left 7s linear infinite;
+        }
+
+        .divider-7 {
+            background: linear-gradient(90deg, #10b981, #059669, #047857, #065f46, #064e3b);
+            background-size: 400% 100%;
+            animation: flow-right 13s linear infinite;
+        }
+
+        .divider-8 {
+            background: linear-gradient(90deg, #f97316, #ea580c, #c2410c, #9a3412, #7c2d12);
+            background-size: 400% 100%;
+            animation: flow-left 6s linear infinite;
+        }
+
+        .divider-nature {
+            background: linear-gradient(90deg, #22c55e, #3b82f6, #f59e0b, #8b5cf6, #06b6d4, #ef4444, #10b981, #f97316);
+            background-size: 800% 100%;
+            animation: rainbow-flow 15s linear infinite;
+        }
+
+        @keyframes flow-right {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        @keyframes flow-left {
+            0% { background-position: 400% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rainbow-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 800% 50%; }
+        }
+
+
+        /* إطارات دائرية متحركة حول الأقسام */
+        .section-border {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #22c55e, #3b82f6, #f59e0b, #8b5cf6, #06b6d4, #ef4444, #10b981, #f97316);
+            background-size: 400% 400%;
+            animation: rotate-border 8s linear infinite;
+            z-index: -1;
+            border-radius: inherit;
+        }
+
+        .section-border::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            border-radius: inherit;
+            z-index: 1;
+        }
+
+        @keyframes rotate-border {
+            0% { 
+                background-position: 0% 50%;
+                transform: rotate(0deg);
+            }
+            25% { 
+                background-position: 100% 50%;
+                transform: rotate(90deg);
+            }
+            50% { 
+                background-position: 100% 100%;
+                transform: rotate(180deg);
+            }
+            75% { 
+                background-position: 0% 100%;
+                transform: rotate(270deg);
+            }
+            100% { 
+                background-position: 0% 50%;
+                transform: rotate(360deg);
+            }
+        }
+
+        
+        /* إطارات خاصة للبطاقات */
+        .nature-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #22c55e, #3b82f6, #f59e0b, #8b5cf6) border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .nature-border::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #22c55e, #3b82f6, #f59e0b, #8b5cf6, #06b6d4, #ef4444);
+            background-size: 300% 300%;
+            animation: border-spin 6s linear infinite;
+            z-index: -1;
+            border-radius: inherit;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-title {
+            background: linear-gradient(45deg, #ffd700, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-text {
+            background: linear-gradient(120deg, #ffd700 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <!-- شاشة الافتتاح -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <h1 class="splash-title">أهلاً وسهلاً بكم</h1>
+            <p class="splash-subtitle">في الموقع الرسمي لمنطقة بني الزحيف التاريخية</p>
+            <div class="splash-welcome">
+                مرحباً بكم في رحلة استكشاف التراث والجمال الطبيعي
+                <br>
+                عزلة الملاحنه • مديرية حفاش • محافظة المحويت
+            </div>
+            <div class="loading-dots">
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+    <!-- الشاشة الرئيسية -->
+    <section class="gradient-bg-1 min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- شريط العنوان المتحرك -->
+        <div class="absolute top-0 left-0 right-0 bg-black bg-opacity-30 backdrop-blur-sm py-4 z-10">
+            <div class="container mx-auto px-6">
+                <h2 class="text-2xl md:text-3xl font-bold moving-title text-center">
+                    الموقع الرسمي لمنطقة بني الزحيف التاريخية
+                </h2>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-5">
+            <div class="floating-text">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold gradient-title mb-8 drop-shadow-2xl">
+                    منطقة بني الزحيف
+                </h1>
+                <div class="text-xl md:text-2xl text-white mb-8 font-semibold drop-shadow-lg">
+                    عزلة الملاحنه • مديرية حفاش • محافظة المحويت
+                </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 md:p-8 mb-12 max-w-5xl mx-auto backdrop-blur-md">
+                <p class="text-lg md:text-xl text-white mb-6 leading-relaxed">
+                    مرحبًا بكم في موقع منطقة بني الزحيف، إحدى <span class="highlight-text">أجمل المناطق الجبلية</span> في عزلة الملاحنه – مديرية حفاش – محافظة المحويت، اليمن.
+                </p>
+                <p class="text-base md:text-lg text-gray-200 leading-relaxed">
+                    تتميز بني الزحيف بتاريخها العريق، طبيعتها الخلابة الخضراء بعد هطول الأمطار، عاداتها الأصيلة، وتفوقها في <span class="highlight-text">التعليم والصحة والثقافة</span>، مما يجعلها وجهة تستحق التعريف والاهتمام.
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#geography" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-semibold inline-block transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    اكتشف المنطقة 🏔️
+                </a>
+                <a href="#villages" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold inline-block transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    تصفح القرى 🏘️
+                </a>
+            </div>
+        </div>
+
+        <!-- مؤشر التمرير -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <div class="section-divider divider-1"></div>
+
+    <!-- قسم الجغرافيا والمناخ -->
+    <section id="geography" class="gradient-bg-2 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">الجغرافيا والمناخ</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="glass-card rounded-2xl p-8">
+                    <h3 class="text-3xl font-bold text-white mb-6">الموقع الجغرافي</h3>
+                    <div class="space-y-4 text-gray-200 text-lg leading-relaxed">
+                        <p>تقع بني الزحيف في <span class="highlight-text">عزلة الملاحنه</span> – مديرية حفاش – محافظة المحويت</p>
+                        <p>منطقة <span class="highlight-text">جبلية مميزة</span> بطبيعتها المدرجة الخضراء بعد هطول الأمطار</p>
+                        <p>مناخها <span class="highlight-text">معتدل طوال الفصول</span>، ما يجعلها صالحة للعيش والزراعة</p>
+                        <p>موسم الأمطار في <span class="highlight-text">فصل الصيف</span>، يضفي على المنطقة جمالًا طبيعيًا خلابًا</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card rounded-xl p-4 text-center hover-scale">
+                        <img src="8.jpg" 
+                             alt="المناخ المعتدل" class="w-full h-24 rounded-lg mb-3 object-cover">
+                        <h4 class="text-white font-bold mb-2 text-sm">المناخ</h4>
+                        <p class="text-gray-200 text-xs">معتدل ومناسب</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 text-center hover-scale">
+                        <img src="Y1.jpg" 
+                             alt="الأمطار الصيفية" class="w-full h-24 rounded-lg mb-3 object-cover">
+                        <h4 class="text-white font-bold mb-2 text-sm">الأمطار</h4>
+                        <p class="text-gray-200 text-xs">صيفية منتظمة</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 text-center hover-scale">
+                        <img src="6677.jpg" 
+                             alt="التضاريس الجبلية" class="w-full h-24 rounded-lg mb-3 object-cover">
+                        <h4 class="text-white font-bold mb-2 text-sm">التضاريس</h4>
+                        <p class="text-gray-200 text-xs">جبلية مدرجة</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-4 text-center hover-scale">
+                        <img src="334455.jpg" 
+                             alt="الطبيعة الخضراء" class="w-full h-24 rounded-lg mb-3 object-cover">
+                        <h4 class="text-white font-bold mb-2 text-sm">الطبيعة</h4>
+                        <p class="text-gray-200 text-xs">خضراء خلابة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#villages" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold inline-block transition-colors">
+                    استكشف القرى الـ12 🏘️
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider divider-2"></div>
+
+    <!-- قسم القرى الـ12 -->
+    <section id="villages" class="gradient-bg-3 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">قرى بني الزحيف الـ12</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- قرية المشنه -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="112.jpg" 
+                         alt="قرية المشنه" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية المشنه</h3>
+                        <p class="text-gray-200 mb-4 text-sm">تقع على قمة جبل مطل على المدرجات الزراعية، بجوار حاجز المعطن الشهير. تضم بئر ماء العين.</p>
+                        <button onclick="showVillage('المشنه')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية القرن -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="55.jpg" 
+                         alt="قرية القرن" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية القرن</h3>
+                        <p class="text-gray-200 mb-4 text-sm">من أقدم قرى المنطقة، تقع على سفح جبل، وما زالت مبانيها القديمة شاهدة على عراقتها وأصالتها.</p>
+                        <button onclick="showVillage('القرن')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية العبر -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="0000.jpg" 
+                         alt="قرية العبر" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية العبر</h3>
+                        <p class="text-gray-200 mb-4 text-sm">تقع تحت قرية المشنه مباشرة، وتحيط بها المدرجات الزراعية من جميع الجهات.</p>
+                        <button onclick="showVillage('العبر')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية الراكب -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="9999.jpg" 
+                         alt="قرية الراكب" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية الراكب</h3>
+                        <p class="text-gray-200 mb-4 text-sm">البوابة الأولى لقرى بني الزحيف، تقع على الخط الرسمي للمديرية. نشأت قبل حوالي 25 عامًا، وتضم مدرسة الزبير بن العوام.</p>
+                        <button onclick="showVillage('الراكب')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية المغربه -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="33.jpg" 
+                         alt="قرية المغربه" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية المغربه</h3>
+                        <p class="text-gray-200 mb-4 text-sm">إحدى أقدم القرى، تقع على قمة جبل الحمام، وتطل على المحل والراكب. تحيط بها المدرجات الزراعية.</p>
+                        <button onclick="showVillage('المغربه')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية الحود -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="333.jpg" 
+                         alt="قرية الحود" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية الحود</h3>
+                        <p class="text-gray-200 mb-4 text-sm">تقع عند مدخل جبل الحص، أعلى جبال المنطقة، ويضم مباني قديمة تعود لآلاف السنين.</p>
+                        <button onclick="showVillage('الحود')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية العرف -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="b2.jpg" 
+                         alt="قرية العرف" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية العرف</h3>
+                        <p class="text-gray-200 mb-4 text-sm">القرية الأكثر سكانًا، تقع جنوب جبل الحص. أهلها يعملون في الزراعة والتجارة والصحة والتعليم.</p>
+                        <button onclick="showVillage('العرف')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية المقطع -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="45.jpg" 
+                         alt="قرية المقطع" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية المقطع</h3>
+                        <p class="text-gray-200 mb-4 text-sm">تقع شرق قرية العرف، ويعمل سكانها بالزراعة والأعمال الحرة. تشتهر بروح التعاون والترابط الاجتماعي.</p>
+                        <button onclick="showVillage('المقطع')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية المحل -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="444.png" 
+                         alt="قرية المحل" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية المحل</h3>
+                        <p class="text-gray-200 mb-4 text-sm">تقع في وسط المنطقة، الثانية من حيث عدد السكان. تضم مدرسة النجاح الأساسية، وموقعها الجذاب جعلها مركزًا مهمًا.</p>
+                        <button onclick="showVillage('المحل')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية الهجاره -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="1234.jpg" 
+                         alt="قرية الهجاره" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية الهجاره</h3>
+                        <p class="text-gray-200 mb-4 text-sm">من أقدم القرى، تقع في منطقة مرتفعة. تشتهر بمنازلها الحجرية وأهلها الطيبين العاملين في الزراعة والأعمال الحرة.</p>
+                        <button onclick="showVillage('الهجاره')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية الدرجه -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="G1.jpg" 
+                         alt="قرية الدرجه" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية الدرجه</h3>
+                        <p class="text-gray-200 mb-4 text-sm">تقع في موقع متوسط، ويعمل سكانها في الزراعة وتربية المواشي. تضم عددًا من المعلمين والأطباء المتميزين.</p>
+                        <button onclick="showVillage('الدرجه')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+
+                <!-- قرية الخواجر -->
+                <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                    <img src="6.jpg" 
+                         alt="قرية الخواجر" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">قرية الخواجر</h3>
+                        <p class="text-gray-200 mb-4 text-sm">آخر قرى بني الزحيف، البوابة الرئيسية للمنطقة. تقع على هضبة مرتفعة، ومن أعلامها المربي أ. حسين القحطاني والدكتور صالح الملحاني.</p>
+                        <button onclick="showVillage('الخواجر')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full w-full transition-colors">
+                            تصفح المعرض
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider divider-3"></div>
+    <!-- قسم التاريخ -->
+    <section id="history" class="gradient-bg-4 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">التاريخ العريق</h2>
+            
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="glass-card rounded-2xl p-8">
+                    <h3 class="text-3xl font-bold text-white mb-6 text-center">نبذة تاريخية</h3>
+                    <p class="text-gray-200 text-lg leading-relaxed text-center">
+                        تُعتبر بني الزحيف من <span class="highlight-text">المناطق العريقة</span> التي ما زالت مبانيها القديمة المنتشرة على قمم الجبال شاهدة على <span class="highlight-text">أصالة المكان وعمق حضارته</span>. تلك المباني، والمدرجات الزراعية الممتدة عبر الجبال، تجسد <span class="highlight-text">إرثًا متوارثًا عبر الأجيال</span>.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                    <img src="777.jpg" 
+                         alt="القلاع الأثرية" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h4 class="text-white font-bold mb-2 text-sm">القلاع الأثرية</h4>
+                        <p class="text-gray-200 text-xs">حصون تاريخية تحرس المنطقة</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                    <img src="6655.jpg" 
+                         alt="المدرجات التاريخية" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h4 class="text-white font-bold mb-2 text-sm">المدرجات الزراعية</h4>
+                        <p class="text-gray-200 text-xs">إرث زراعي يمتد آلاف السنين</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                    <img src="4433.jpg" 
+                         alt="المواقع الأثرية" class="w-full h-40 object-cover">
+                    <div class="p-4 text-center">
+                        <h4 class="text-white font-bold mb-2 text-sm">المواقع الأثرية</h4>
+                        <p class="text-gray-200 text-xs">آثار تحكي قصص الحضارة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider divider-4"></div>
+    <!-- قسم الثقافة والتعليم -->
+    <section id="culture" class="gradient-bg-5 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">الثقافة والتعليم</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-card rounded-2xl p-8 mb-12">
+                    <h3 class="text-3xl font-bold text-white mb-6 text-center">منطقة غنية بالثقافة والمعرفة</h3>
+                    <p class="text-gray-200 text-lg leading-relaxed text-center mb-8">
+                        تُعتبر بني الزحيف <span class="highlight-text">متصدرة على كثير من المناطق المجاورة</span> في مستوى التعليم والثقافة، حيث يبرز منها العديد من المعلمين والأطباء والمثقفين الذين يساهمون في رفع شأن المنطقة. يعمل أهلها في <span class="highlight-text">التعليم، الصحة، التجارة، والزراعة</span>، إلى جانب تواجد عدد منهم في مجالات الأمن والخدمات الحكومية.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=240&fit=crop" 
+                                 alt="المدارس الحديثة" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">المدارس الحديثة</h4>
+                                <p class="text-gray-200 text-xs">مدارس متطورة ومعلمون متميزون</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=240&fit=crop" 
+                                 alt="المراكز الصحية" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">المراكز الصحية</h4>
+                                <p class="text-gray-200 text-xs">أطباء وممرضون من أبناء المنطقة</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=240&fit=crop" 
+                                 alt="المكتبات العامة" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">المكتبات العامة</h4>
+                                <p class="text-gray-200 text-xs">مراكز ثقافية ومكتبات عامة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="section-divider divider-5"></div>
+    <!-- قسم العادات والتقاليد -->
+    <section id="traditions" class="gradient-bg-6 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">العادات والتقاليد</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-card rounded-2xl p-8 mb-12 text-center">
+                    <h3 class="text-3xl font-bold text-white mb-6">تراث شعبي أصيل ومتنوع</h3>
+                    <p class="text-gray-200 text-lg leading-relaxed">
+                        تحتفظ بني الزحيف بعاداتها وتقاليدها الأصيلة التي تعكس <span class="highlight-text">الهوية اليمنية العريقة</span> وتجسد روح التماسك الاجتماعي والترابط بين أبناء المنطقة. من أبرز هذه التقاليد الاحتفالات بالأعراس والمناسبات الدينية، وتقاليد الضيافة والكرم، والحرف التراثية المتوارثة.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="5454.jpg" 
+                             alt="الأعراس التراثية" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm"> المهرجانات السنوية</h4>
+                            <p class="text-gray-200 text-xs"> احتفالات بموسم الحج وتجمع اهالي المنطقة ليقوموا بعمل مهرجانات تراثية خلال ايام عيد الاضحى المبارك</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="00.jpeg" 
+                             alt="المناسبات الدينية" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">المناسبات الدينية</h4>
+                            <p class="text-gray-200 text-xs">احتفالات بالأعياد والمناسبات الدينية بطقوس تراثية مميزة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="0.webp" 
+                             alt="الضيافة والكرم" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">الضيافة والكرم</h4>
+                            <p class="text-gray-200 text-xs">تقاليد الضيافة الأصيلة وإكرام الضيف بأفضل ما لديهم</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المأكولات الشعبية -->
+    <section id="food" class="gradient-bg-7 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">المأكولات الشعبية</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-card rounded-2xl p-8 mb-12 text-center">
+                    <h3 class="text-3xl font-bold text-white mb-6">مذاق أصيل يعبر عن التراث</h3>
+                    <p class="text-gray-200 text-lg leading-relaxed">
+                        تشتهر بني الزحيف بمأكولاتها الشعبية ذات <span class="highlight-text">المذاق الرائع</span>، التي تُعبر عن أصالة المطبخ اليمني وروحه. من أشهر هذه المأكولات <span class="highlight-text">الأسيد والفحسة</span>، والحبوب المحلية كالذرة والدخن والشعير، إلى جانب العسل الجبلي الطبيعي ومنتجات الألبان المحلية.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="6767.jpeg" 
+                             alt="الأسيد والفحسة" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">الأسيد والفحسة</h4>
+                            <p class="text-gray-200 text-xs">أطباق تراثية مميزة تُحضر بطرق تقليدية وتقدم في المناسبات</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="1717.jpeg" 
+                             alt="الحبوب المحلية" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">الحبوب المحلية</h4>
+                            <p class="text-gray-200 text-xs">الذرة والدخن والشعير المزروعة محلياً وأطباقها التقليدية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=240&fit=crop" 
+                             alt="العسل الجبلي" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">العسل الجبلي</h4>
+                            <p class="text-gray-200 text-xs">عسل طبيعي من النحل الجبلي بجودة عالية ومذاق مميز</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاقتصاد والحرف -->
+    <section id="economy" class="gradient-bg-8 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">الاقتصاد والحرف</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-card rounded-2xl p-8 mb-12">
+                    <h3 class="text-3xl font-bold text-white mb-6 text-center">اقتصاد متنوع وحرف تراثية</h3>
+                    <p class="text-gray-200 text-lg leading-relaxed text-center mb-8">
+                        يعتمد سكان بني الزحيف على <span class="highlight-text">أنشطة اقتصادية متنوعة</span> تشمل الزراعة وتربية المواشي، والأعمال اليدوية كالبناء والنجارة والحدادة والتلييس والبلاط، إلى جانب التجارة والأعمال الحرة. كما يعمل عدد كبير من أبناء المنطقة في <span class="highlight-text">التعليم والصحة والأجهزة الأمنية</span> والخدمات الحكومية.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="5566.jpg" 
+                                 alt="الزراعة وتربية المواشي" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">الزراعة وتربية المواشي</h4>
+                                <p class="text-gray-200 text-xs">زراعة الحبوب والخضروات وتربية الماعز والأبقار والدواجن</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=240&fit=crop" 
+                                 alt="الأعمال اليدوية" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">الأعمال اليدوية</h4>
+                                <p class="text-gray-200 text-xs">البناء، النجارة، الحدادة، التلييس، والبلاط</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=240&fit=crop" 
+                                 alt="التجارة والأعمال الحرة" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">التجارة والأعمال الحرة</h4>
+                                <p class="text-gray-200 text-xs">محلات تجارية ومشاريع صغيرة ومتوسطة</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=240&fit=crop" 
+                                 alt="التعليم" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">التعليم</h4>
+                                <p class="text-gray-200 text-xs">معلمون ومدرسون في مختلف المراحل التعليمية</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=400&h=240&fit=crop" 
+                                 alt="الصحة" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">الصحة</h4>
+                                <p class="text-gray-200 text-xs">أطباء وممرضون وفنيون صحيون</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                            <img src="223344.jpg" 
+                                 alt="الأمن والخدمات" class="w-full h-40 object-cover">
+                            <div class="p-4">
+                                <h4 class="text-white font-bold mb-2 text-sm">الأمن والخدمات</h4>
+                                <p class="text-gray-200 text-xs">العمل في الأجهزة الأمنية والخدمات الحكومية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الصور -->
+    <section id="gallery" class="gradient-bg-1 py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center gradient-title mb-16">معرض الصور</h2>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="glass-card rounded-2xl p-8 mb-12 text-center">
+                    <h3 class="text-3xl font-bold text-white mb-6">جمال بني الزحيف في صور</h3>
+                    <p class="text-gray-200 text-lg leading-relaxed">
+                        مجموعة مختارة من الصور التي تعكس <span class="highlight-text">جمال الطبيعة والتراث</span> في منطقة بني الزحيف، من المناظر الطبيعية الخلابة إلى المباني التراثية والحياة الاجتماعية النشطة.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="11.jpg" 
+                             alt="المناظر الطبيعية" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">المناظر الطبيعية الخلابة</h4>
+                            <p class="text-gray-200 text-xs">جبال خضراء بعد هطول الأمطار الصيفية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="1.jpg" 
+                             alt="المباني الحجرية" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">المباني الحجرية القديمة</h4>
+                            <p class="text-gray-200 text-xs">عمارة تراثية تحكي تاريخ المنطقة العريق</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="6655.jpg" 
+                             alt="المدرجات الزراعية" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">المدرجات الزراعية</h4>
+                            <p class="text-gray-200 text-xs">إرث زراعي يمتد عبر التاريخ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="89.jpg" 
+                             alt="الفعاليات الثقافية" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">الطبيعة </h4>
+                            <p class="text-gray-200 text-xs"> مناظر طبيعية خلابه </p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="1122.jpg" 
+                             alt="المؤسسات التعليمية" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">المؤسسات التعليمية</h4>
+                            <p class="text-gray-200 text-xs">كوادر متميزة من أبناء المنطقة</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl overflow-hidden hover-scale">
+                        <img src="11223344.jpg" 
+                             alt="الحرف التراثية" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="text-white font-bold mb-2 text-sm">الحرف التراثية</h4>
+                            <p class="text-gray-200 text-xs">مهارات تراثية ومهن متنوعة</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الفيديو التاريخي -->
+                <div class="mt-16">
+                    <h3 class="text-3xl font-bold text-center gradient-title mb-8">فيديو تاريخي نادر</h3>
+                    <div class="max-w-4xl mx-auto">
+                        <div class="glass-card rounded-2xl overflow-hidden hover-scale">
+                            <div class="relative">
+                                <video 
+                                    class="w-full h-64 md:h-96 object-cover" 
+                                    controls 
+                                    autoplay
+                                    poster="1.jpg"
+                                    preload="metadata">
+                                    <source src="1.mp4" type="video/mp4">
+                                    <p class="text-white p-4">متصفحك لا يدعم تشغيل الفيديو</p>
+                                </video>
+                                <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M8 5v10l8-5-8-5z"/>
+                                            </svg>
+                                        </div>
+                                        <p class="text-white font-bold">شاهد الفيديو التاريخي</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-2xl font-bold text-white mb-4">وثائقي تاريخي عن بني الزحيف</h4>
+                                <p class="text-gray-200 leading-relaxed mb-4">
+                                    فيديو تاريخي نادر يوثق <span class="highlight-text">الحياة التراثية</span> في منطقة بني الزحيف عبر العقود الماضية. يعرض الفيديو المباني القديمة، الحرف التقليدية، والحياة الاجتماعية كما كانت في الماضي، مما يجعله <span class="highlight-text">وثيقة تاريخية مهمة</span> للأجيال القادمة.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-600 bg-opacity-30 text-blue-200 px-3 py-1 rounded-full text-xs">تاريخي</span>
+                                    <span class="bg-green-600 bg-opacity-30 text-green-200 px-3 py-1 rounded-full text-xs">تراثي</span>
+                                    <span class="bg-purple-600 bg-opacity-30 text-purple-200 px-3 py-1 rounded-full text-xs">وثائقي</span>
+                                    <span class="bg-orange-600 bg-opacity-30 text-orange-200 px-3 py-1 rounded-full text-xs">نادر</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الشكر والتقدير -->
+    <footer class="gradient-bg-footer py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center gradient-title mb-12">شكر وتقدير</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="glass-card rounded-2xl p-8 text-center hover-scale">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                                 alt="الدكتور عبد الحميد الفقيه" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">الدكتور عبد الحميد الفقيه</h3>
+                        <p class="text-gray-200 leading-relaxed">
+                            الذي ساعدنا في هذا الموقع عبر تزويدنا بتقارير شاملة ومعلومات قيمة حول منطقة بني الزحيف، مما أثرى المحتوى وجعله أكثر دقة وشمولية.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-2xl p-8 text-center hover-scale">
+                        <div class="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" 
+                                 alt="المهندس حسام الصائدي" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">المهندس حسام الصائدي</h3>
+                        <p class="text-gray-200 leading-relaxed">
+                            الذي قام بتصميم هذا الموقع وتطويره بأحدث التقنيات والتأثيرات البصرية المتطورة، ليعكس جمال وعراقة منطقة بني الزحيف.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl p-6 text-center">
+                    <p class="text-white text-lg">
+                        جميع الحقوق محفوظة لدى <span class="highlight-text">الموقع الرسمي لمنطقة بني الزحيف</span> - 2025
+                    </p>
+                    <p class="text-gray-200 mt-2">
+                        عزلة الملاحنه – مديرية حفاش – محافظة المحويت – الجمهورية اليمنية
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!-- نهاية المحتوى الرئيسي -->
+
+    <!-- نافذة عرض معرض القرية -->
+    <div id="village-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 id="village-title" class="text-3xl font-bold gradient-title"></h2>
+                    <button onclick="closeModal()" class="text-white text-3xl hover:text-gray-300 transition-colors">×</button>
+                </div>
+                <div id="village-content">
+                    <!-- سيتم إدراج محتوى القرية هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات القرى الكاملة مع معارض الصور
+        const villageData = {
+            'المشنه': {
+                description: 'تقع على قمة جبل مطل على المدرجات الزراعية، بجوار حاجز المعطن الشهير. تضم بئر ماء العين، ويعتمد سكانها على الزراعة وتربية المواشي والأعمال اليدوية. تتميز بإطلالتها الرائعة على المدرجات الزراعية المحيطة.',
+                images: [
+                    { src: '112.jpg', title: 'قمة جبل المشنه', desc: 'إطلالة رائعة على المدرجات الزراعية' },
+                    { src: '99.jpg', title: 'المدرجات الزراعية', desc: 'زراعة تقليدية متطورة ومتنوعة' },
+                    { src: 'Y1.jpg', title: 'المباني التراثية', desc: 'عمارة يمنية أصيلة وعريقة' },
+                    { src: '44444.jpg', title: 'الحياة الاجتماعية', desc: 'تماسك وترابط اجتماعي قوي' },
+                    { src: '111.jpg', title: 'بئر ماء العين', desc: 'مصدر مائي طبيعي مهم' },
+                    { src: '3333.jpg', title: 'الحرف التراثية', desc: 'مهارات يدوية متوارثة عبر الأجيال' }
+                ]
+            },
+            'القرن': {
+                description: 'من أقدم قرى المنطقة، تقع على سفح جبل، وما زالت مبانيها القديمة المنتشرة على قمم الجبال شاهدة على عراقتها وأصالتها. تحتفظ بطابعها التراثي الأصيل وتاريخها العريق الذي يمتد لقرون.',
+                images: [
+                    { src: '55.jpg', title: 'المباني الأثرية', desc: 'شاهدة على التاريخ العريق للمنطقة' },
+                    { src: '878787.jpg', title: 'البيوت الحجرية', desc: 'عمارة تراثية قديمة ومميزة' },
+                    { src: '55.jpg', title: 'سفح الجبل', desc: 'موقع استراتيجي مميز وخلاب' },
+                    { src: 'm1.jpg', title: 'التراث الشعبي', desc: 'عادات وتقاليد أصيلة متوارثة' },
+                    { src: '334444.jpg', title: 'الزراعة القديمة', desc: 'تقنيات زراعية تراثية عريقة' },
+                    { src: '665555.jpg', title: 'الحرف اليدوية', desc: 'صناعات تقليدية متنوعة' }
+                ]
+            },
+            'العبر': {
+                description: 'تقع تحت قرية المشنه مباشرة، وتحيط بها المدرجات الزراعية من جميع الجهات. تشتهر بجمال طبيعتها وخضرة مدرجاتها، وتعتبر من القرى المميزة في المنطقة بموقعها الجغرافي الفريد.',
+                images: [
+                    { src: '89.jpg', title: 'المدرجات المحيطة', desc: 'خضرة من جميع الجهات والاتجاهات' },
+                    { src: '99.jpg', title: 'الطبيعة الخلابة', desc: 'جمال طبيعي استثنائي ومتميز' },
+                    { src: '0000.jpg', title: 'البيوت التراثية', desc: 'عمارة يمنية مميزة وأصيلة' },
+                    { src: '87878787.jpg', title: 'الفعاليات الثقافية', desc: 'تراث حي ومتجدد عبر الأجيال' },
+                    { src: '5566.jpg', title: 'المنتجات الطبيعية', desc: 'عسل وزراعة محلية طبيعية' },
+                    { src: '1122.jpg', title: 'الأعمال اليدوية', desc: 'حرف تراثية متنوعة ومتطورة' }
+                ]
+            },
+            'الراكب': {
+                description: 'البوابة الأولى لقرى بني الزحيف، تقع على الخط الرسمي للمديرية. نشأت قبل حوالي 25 عامًا، وتضم مدرسة الزبير بن العوام. يعمل أهلها في التعليم والصحة والتجارة، وهي مؤهلة لتكون مركزًا محوريًا في المستقبل.',
+                images: [
+                    { src: '9999.jpg', title: 'البوابة الرئيسية', desc: 'مدخل منطقة بني الزحيف الرئيسي' },
+                    { src: '00000.jpg', title: 'مدرسة الزبير بن العوام', desc: 'مؤسسة تعليمية رائدة ومتميزة' },
+                    { src: '111122.jpg', title: 'المحلات التجارية', desc: 'مركز تجاري نشط ومتطور' },
+                    { src: '9990.jpg', title: 'الخدمات العامة', desc: 'خدمات متنوعة للمجتمع المحلي' },
+                    { src: '55566.jpg', title: 'المباني الحديثة', desc: 'تطور عمراني حديث ومنظم' },
+                    { src: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop', title: 'الزراعة المحيطة', desc: 'مدرجات زراعية جميلة ومنتجة' }
+                ]
+            },
+            'المغربه': {
+                description: 'إحدى أقدم القرى، تقع على قمة جبل الحمام، وتطل على المحل والراكب. تحيط بها المدرجات الزراعية التي تزيدها جمالًا وروعة. تتميز بموقعها الاستراتيجي وإطلالتها البانورامية الرائعة.',
+                images: [
+                    { src: '11223.jpg', title: 'جبل الحمام', desc: 'قمة شاهقة بإطلالة رائعة ومميزة' },
+                    { src: '112233.jpg', title: 'الإطلالة على المحل', desc: 'منظر بانورامي خلاب ومتميز' },
+                    { src: '556.jpg', title: 'المدرجات المحيطة', desc: 'زراعة متدرجة جميلة ومنتجة' },
+                    { src: '1.jpg', title: 'البيوت القديمة', desc: 'عمارة تراثية عريقة وأصيلة' },
+                    { src: '667788.jpg', title: 'التراث الشعبي', desc: 'عادات أصيلة متوارثة عبر الأجيال' },
+                    { src: '6767.jpeg', title: 'المنتجات المحلية', desc: 'عسل وزراعة طبيعية عالية الجودة' }
+                ]
+            },
+            'الحود': {
+                description: 'تقع عند مدخل جبل الحص، وهو أعلى جبال المنطقة، ويضم مباني قديمة تعود لآلاف السنين. موقعها يجعلها وجهة سياحية مميزة بإطلالتها على جميع قرى بني الزحيف، وتحتوي على آثار تاريخية مهمة.',
+                images: [
+                    { src: '1233.jpg', title: 'جبل الحص', desc: 'أعلى قمة في المنطقة بأكملها' },
+                    { src: '123.jpg', title: 'المباني الأثرية', desc: 'آثار تعود لآلاف السنين الماضية' },
+                    { src: '12.jpg', title: 'الإطلالة البانورامية', desc: 'منظر على جميع قرى المنطقة' },
+                    { src: '12345.jpg', title: 'القلاع القديمة', desc: 'حصون تاريخية عريقة ومهمة' },
+                    { src: '56.jpg', title: 'المواقع السياحية', desc: 'وجهة سياحية مميزة وجذابة' },
+                    { src: '76.jpg', title: 'الطبيعة الجبلية', desc: 'تضاريس متنوعة وخلابة ومميزة' }
+                ]
+            }
+        };
+
+        // عرض معرض القرية
+        function showVillage(villageName) {
+            const modal = document.getElementById('village-modal');
+            const title = document.getElementById('village-title');
+            const content = document.getElementById('village-content');
+            
+            const data = villageData[villageName];
+            if (!data) {
+                // بيانات افتراضية للقرى الأخرى
+                title.textContent = `قرية ${villageName}`;
+                content.innerHTML = `
+                    <div class="mb-8">
+                        <p class="text-gray-200 text-lg leading-relaxed">معلومات مفصلة عن قرية ${villageName} ستتوفر قريباً. هذه القرية جزء مهم من منطقة بني الزحيف وتساهم في ثراء المنطقة الثقافي والاجتماعي.</p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-6">معرض صور ${villageName}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop" 
+                                 alt="منظر عام من ${villageName}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h4 class="text-white font-bold text-sm">منظر عام</h4>
+                                <p class="text-gray-200 text-xs">طبيعة خلابة ومميزة</p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300&h=200&fit=crop" 
+                                 alt="المدرجات في ${villageName}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h4 class="text-white font-bold text-sm">المدرجات الزراعية</h4>
+                                <p class="text-gray-200 text-xs">زراعة تقليدية متطورة</p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=200&fit=crop" 
+                                 alt="المباني في ${villageName}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h4 class="text-white font-bold text-sm">المباني التراثية</h4>
+                                <p class="text-gray-200 text-xs">عمارة يمنية أصيلة</p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=200&fit=crop" 
+                                 alt="الحياة الاجتماعية في ${villageName}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h4 class="text-white font-bold text-sm">الحياة الاجتماعية</h4>
+                                <p class="text-gray-200 text-xs">تماسك وترابط اجتماعي</p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300&h=200&fit=crop" 
+                                 alt="المنتجات المحلية في ${villageName}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h4 class="text-white font-bold text-sm">المنتجات المحلية</h4>
+                                <p class="text-gray-200 text-xs">عسل وزراعة طبيعية</p>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                            <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=300&h=200&fit=crop" 
+                                 alt="الحرف التراثية في ${villageName}" class="w-full h-32 object-cover">
+                            <div class="p-3">
+                                <h4 class="text-white font-bold text-sm">الحرف التراثية</h4>
+                                <p class="text-gray-200 text-xs">مهارات يدوية متوارثة</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                title.textContent = `قرية ${villageName}`;
+                content.innerHTML = `
+                    <div class="mb-8">
+                        <p class="text-gray-200 text-lg leading-relaxed">${data.description}</p>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-6">معرض صور قرية ${villageName}</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${data.images.map(img => `
+                            <div class="glass-card rounded-lg overflow-hidden hover-scale">
+                                <img src="${img.src}" alt="${img.title}" class="w-full h-32 object-cover">
+                                <div class="p-3">
+                                    <h4 class="text-white font-bold text-sm">${img.title}</h4>
+                                    <p class="text-gray-200 text-xs">${img.desc}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // إغلاق النافذة
+        function closeModal() {
+            const modal = document.getElementById('village-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // إغلاق النافذة عند النقر خارجها
+        document.getElementById('village-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // إغلاق النافذة بمفتاح Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'973d3534a7d0f9e1',t:'MTc1NTk3OTM0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
